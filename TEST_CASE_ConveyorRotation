@@ -1,0 +1,41 @@
+/test-cases/CB-LB-004_MultiConveyorRotation.md
+# Test Case ID: CB-LB-004
+# Title: Multi-Conveyor Load Balancing With Box Counters
+
+## Purpose
+To verify that all four conveyor belts operate in balanced rotation without causing intersection traffic, using a 20–30 box counter per belt.
+
+## Preconditions
+- 4 conveyors active
+- Sensors installed: B1_Sensor, B2_Sensor, B3_Sensor, B4_Sensor
+- PLC logic loaded
+- Intersection jam sensor active
+
+---
+
+## Test Steps
+
+### Step 1 – All belts active
+**Input:** Belt1=30, Belt2=25, Belt3=40, Belt4=30  
+**Expected:** Each belt sends 20-30 boxes then hands over to next belt.
+
+### Step 2 – Belt 2 empty
+**Input:** B2 empty  
+**Expected:** Belt 2 skipped
+
+### Step 3 – Only one belt has boxes
+**Expected:** That belt runs continuously (counter disabled)
+
+### Step 4 – Belt becomes empty mid-cycle
+**Expected:** Rotation moves to next belt automatically
+
+### Step 5 – Intersection traffic simulation
+**Expected:** No global stop triggered
+
+---
+
+## PLC Ladder Logic Overview
+(Insert ladder logic description or link to ladder diagram file)
+/plc-logic/ConveyorRotation_LadderDiagram.txt  
+/plc-logic/ConveyorRotation_Logic.st  
+/plc-logic/ConveyorRotation_FBD.png  
